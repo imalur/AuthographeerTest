@@ -17,12 +17,12 @@ import android.view.View;
 public class AuthographView extends View {
 	
 	private final int DISTANCE_THRESHOLD = 10;
-	float prevX;
-	float prevY;
+	private float prevX;
+	private float prevY;
 	
-	List<Path> pathlist = new ArrayList<Path>();	// коллекци€ путей
-	Paint paintLine;	// стили и цвета
-	Path currentPath;	// текущий путь - дл€ событи€ перемещени€
+	private List<Path> pathlist = new ArrayList<Path>();	// коллекци€ путей
+	private Paint paintLine;	// стили и цвета
+	private Path currentPath;	// текущий путь - дл€ событи€ перемещени€
 	
 	// 2. ќЅя«ј“≈Ћ№Ќќ переопредел€ть конструктор с набором атрибутов
     public AuthographView(Context context, AttributeSet attrs) {
