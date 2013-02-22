@@ -3,7 +3,9 @@ package ua.com.imalur.authographeer;
 import java.util.ArrayList;
 import java.util.List;
 
+import ua.com.imalur.authographeer.utils.PhotoFileHelper;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -22,9 +24,12 @@ public class AuthographView extends View {
 	
 	private List<Path> pathlist = new ArrayList<Path>();	// коллекци€ путей
 	private Paint paintLine;	// стили и цвета
+	private Paint paintWhite;	// бела€ кисть
 	private Path currentPath;	// текущий путь - дл€ событи€ перемещени€
 	
 	private boolean savedChanges = false;
+	private String photoPath;	// путь к фоновому изображению
+	private Bitmap background;
 	
 	// ќЅя«ј“≈Ћ№Ќќ переопредел€ть конструктор с набором атрибутов
     public AuthographView(Context context, AttributeSet attrs) {
@@ -37,7 +42,18 @@ public class AuthographView extends View {
         paintLine.setStrokeWidth(5);				// толщина
         paintLine.setStyle(Paint.Style.STROKE);		// только контур
     }
-
+    
+    public void setBackgroundPath(String photoPath){
+    	this.photoPath = photoPath;
+    }
+    
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    	super.onSizeChanged(w, h, oldw, oldh);
+    	background = PhotoFileHelper.getScaledBitmapFromFile(photoPath, w, h); 
+//    	background = BitmapHelper.getScaledBitmapFromFile(photoPath, w, h); 
+    }
+    
 	// обработчик касаний
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -75,14 +91,18 @@ public class AuthographView extends View {
 		return true;
 	}
 	
-	// 6. отрисовка
+	// отрисовка
 	@Override
 	protected void onDraw(Canvas canvas) {
+		canvas.drawColor(Color.GRAY);
+		// фон
+		if (background != null){
+			canvas.drawBitmap(background, 0, 0, null);
+		}
 		// отрисовка всех ломаных
 		for(Path p : pathlist){
 			canvas.drawPath(p, paintLine);
-		}
-			
-	}
+		}			
+	}	
 
 }

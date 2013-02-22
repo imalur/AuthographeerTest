@@ -35,9 +35,8 @@ public class MainScreen extends Activity {
     		launchDrawing(null);
     		break;
     	case R.id.btnSettings:
+    		launchSettingsScreen();
     		break;
-    	
-    	
     	}
     }
 
@@ -82,6 +81,12 @@ public class MainScreen extends Activity {
     		launchDrawing(photoPath);
     	}
     }
+    
+
+	private void launchSettingsScreen() {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }
