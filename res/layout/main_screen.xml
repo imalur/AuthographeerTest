@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_margin="50dp"
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:gravity="center"
+        >
+        <ImageView
+            android:layout_margin="20dp"
+        	android:layout_width="150dp"    
+        	android:layout_height="150dp"
+        	android:src="@drawable/ic_launcher"    
+            />
+        <Button
+            android:id="@+id/btnCamera"
+            style="@style/ButtonStyle"
+            android:text="@string/btn_camera"
+            />
+        <Button
+            android:id="@+id/btnBlank"
+            style="@style/ButtonStyle"
+            android:text="@string/btn_blank"            
+            />
+        <Button
+            android:id="@+id/btnSettings"
+            style="@style/ButtonStyle"
+            android:text="@string/btn_settings"            
+            />
+        
+    </LinearLayout>
+
+</RelativeLayout>

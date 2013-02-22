@@ -18,6 +18,7 @@ public class DrawActivity extends Activity {
 
 	private AuthographView view;
 	
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class DrawActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+    	super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }

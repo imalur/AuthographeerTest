@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-//1. —оздать класс, унаследованный от View 
+//—оздать класс, унаследованный от View 
 public class AuthographView extends View {
 	
 	private final int DISTANCE_THRESHOLD = 10;
@@ -24,10 +24,12 @@ public class AuthographView extends View {
 	private Paint paintLine;	// стили и цвета
 	private Path currentPath;	// текущий путь - дл€ событи€ перемещени€
 	
-	// 2. ќЅя«ј“≈Ћ№Ќќ переопредел€ть конструктор с набором атрибутов
+	private boolean savedChanges = false;
+	
+	// ќЅя«ј“≈Ћ№Ќќ переопредел€ть конструктор с набором атрибутов
     public AuthographView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        // 4. экземпл€р Paint дл€ свойств линий 
+        // экземпл€р Paint дл€ свойств линий 
         paintLine = new Paint();
         paintLine.setAntiAlias(true);				// сглаживание
         paintLine.setColor(Color.GREEN);
@@ -36,7 +38,7 @@ public class AuthographView extends View {
         paintLine.setStyle(Paint.Style.STROKE);		// только контур
     }
 
-	// 5. обработчик касаний
+	// обработчик касаний
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		int action = event.getAction();	// действие
@@ -49,7 +51,7 @@ public class AuthographView extends View {
 			currentPath = new Path();			
 			currentPath.moveTo(x, y);
 			pathlist.add(currentPath);			
-			Log.d("", "ACTION_DOWN");
+//			Log.d("", "ACTION_DOWN");
 		}
 		// перемещение пальца
 		if (action == MotionEvent.ACTION_MOVE){
@@ -59,7 +61,7 @@ public class AuthographView extends View {
 
 			if (distanceSquared > DISTANCE_THRESHOLD)
 				currentPath.quadTo(prevX, prevY, (x + prevX)/2, (y + prevY)/2);
-			Log.d("", "ACTION_MOVE");			
+//			Log.d("", "ACTION_MOVE");			
 		}
 		// подн€ли палец
 		if (action == MotionEvent.ACTION_UP){							
