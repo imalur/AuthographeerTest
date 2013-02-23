@@ -66,8 +66,7 @@ public class MainScreen extends Activity {
     	Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		photoFileUri = PhotoFileHelper.prepareRawPhotoToSave();
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, photoFileUri);
-		startActivityForResult(intent, TAKE_IMAGE_ACTION_CODE);
-		
+		startActivityForResult(intent, TAKE_IMAGE_ACTION_CODE);		
 	}
 	/*
 	 *  Отклик от камеры - фото добавляется в галерею

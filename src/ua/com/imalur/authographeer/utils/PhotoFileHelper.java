@@ -34,11 +34,15 @@ public class PhotoFileHelper {
 	    	// текущая дата-время для уникального имени файла
 	    	String dateTime =  new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
 			String filename = prefix + dateTime + FILENAME_EXTENSION;
-						    
-	    	File storageFile = new File(
-					Environment.getExternalStoragePublicDirectory(
-							Environment.DIRECTORY_PICTURES),
-					filename);		
+			
+//			// этот код некорректно работал на планшете,
+//			// когда есть внутреннее хранилище, но нет SD карты
+//	    	File storageFile = new File(
+//					Environment.getExternalStoragePublicDirectory(
+//							Environment.DIRECTORY_PICTURES),
+//					filename);			    	
+			File rootsd = Environment.getExternalStorageDirectory();
+			File storageFile = new File(rootsd.getAbsolutePath() + "/DCIM/" + filename);
 			return Uri.fromFile(storageFile);							
 		}
 	
