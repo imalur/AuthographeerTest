@@ -18,7 +18,7 @@ import android.view.View;
 //Создать класс, унаследованный от View 
 public class AuthographView extends View {
 	
-	private final int DISTANCE_THRESHOLD = 10;
+	private final int DISTANCE_THRESHOLD = 5; // 10
 	private float prevX;
 	private float prevY;
 	

@@ -22,15 +22,16 @@
             android:text="@string/btn_camera"
             />
         <Button
+            android:id="@+id/btnGallery"
+            style="@style/ButtonStyle"
+            android:text="@string/btn_gallery"            
+            />
+        <Button
             android:id="@+id/btnBlank"
             style="@style/ButtonStyle"
             android:text="@string/btn_blank"            
             />
-        <Button
-            android:id="@+id/btnSettings"
-            style="@style/ButtonStyle"
-            android:text="@string/btn_settings"            
-            />
+
         
     </LinearLayout>
 

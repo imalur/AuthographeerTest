@@ -101,32 +101,33 @@ public class PhotoFileHelper {
     	}
     	Bitmap rotatedBmp =  null;
     	try{
-		// Get the dimensions of the bitmap
-		BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-		bmOptions.inJustDecodeBounds = true;
-		BitmapFactory.decodeFile(photoPath, bmOptions);
-		int photoW = Math.min(bmOptions.outWidth, bmOptions.outHeight);
-		int photoH = Math.max(bmOptions.outWidth, bmOptions.outHeight);
-		// Determine how much to scale down the image
-		int scaleFactor = Math.min(photoW/screenWidth, photoH/screenHeight);		
-		// create a matrix for the manipulation
-        Matrix matrix = new Matrix();
-        // resize the bit map
-//        matrix.postScale(scaleFactor, scaleFactor);
-        // rotate the Bitmap if photo in landscape orientation
-        if (bmOptions.outWidth > bmOptions.outHeight)
-        	matrix.postRotate(90);
-
-		// Decode the image file into a Bitmap sized to fill the View
-		bmOptions.inJustDecodeBounds = false;
-		bmOptions.inSampleSize = scaleFactor;
-		bmOptions.inPurgeable = true;
-		Bitmap originalBitmap =  BitmapFactory.decodeFile(photoPath, bmOptions);		
-//		return originalBitmap;
-    	// recreate the new Bitmap
-        rotatedBmp =  Bitmap.createBitmap(	originalBitmap, 0, 0,
-							        		bmOptions.outWidth, bmOptions.outHeight, 
-							        		matrix, true);
+    		// http://developer.android.com/intl/ru/training/displaying-bitmaps/load-bitmap.html
+    		// Get the dimensions of the bitmap
+			BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+			bmOptions.inJustDecodeBounds = true;
+			BitmapFactory.decodeFile(photoPath, bmOptions);
+			int photoW = Math.min(bmOptions.outWidth, bmOptions.outHeight);
+			int photoH = Math.max(bmOptions.outWidth, bmOptions.outHeight);
+			// Determine how much to scale down the image
+			int scaleFactor = Math.min(photoW/screenWidth, photoH/screenHeight);		
+			// create a matrix for the manipulation
+	        Matrix matrix = new Matrix();
+	        // resize the bit map
+	//        matrix.postScale(scaleFactor, scaleFactor);
+	        // rotate the Bitmap if photo in landscape orientation
+	        if (bmOptions.outWidth > bmOptions.outHeight)
+	        	matrix.postRotate(90);
+	
+			// Decode the image file into a Bitmap sized to fill the View
+			bmOptions.inJustDecodeBounds = false;
+			bmOptions.inSampleSize = scaleFactor;
+			bmOptions.inPurgeable = true;
+			Bitmap originalBitmap =  BitmapFactory.decodeFile(photoPath, bmOptions);		
+			return originalBitmap;
+	    	// recreate the new Bitmap
+//	        rotatedBmp =  Bitmap.createBitmap(	originalBitmap, 0, 0,
+//								        		photoW, photoH, 
+//								        		matrix, true);    		
     	}
     	catch(Exception e){
     		Log.e("",e.getMessage());
