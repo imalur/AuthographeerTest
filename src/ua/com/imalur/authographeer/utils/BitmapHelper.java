@@ -3,6 +3,7 @@ package ua.com.imalur.authographeer.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
+import android.util.Log;
 
 public class BitmapHelper {
 	
@@ -19,12 +20,11 @@ public class BitmapHelper {
 				
 		// Determine how much to scale down the image
 		int scaleFactor = Math.min(photoW/screenWidth, photoH/screenHeight);
-				
 		// Decode the image file into a Bitmap sized to fill the View
 		bmOptions.inJustDecodeBounds = false;
 		bmOptions.inSampleSize = scaleFactor;
-		bmOptions.inPurgeable = true;
-				
+		bmOptions.inPurgeable = true;	
+		
 		return BitmapFactory.decodeFile(photoPath, bmOptions);
     }
 }

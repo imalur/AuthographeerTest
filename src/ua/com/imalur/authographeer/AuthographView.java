@@ -29,7 +29,10 @@ public class AuthographView extends View {
 	
 	private boolean savedChanges = false;
 	private String photoPath;	// путь к фоновому изображению
+	private Bitmap photo;
 	private Bitmap background;
+	private int w;
+	private int h;
 	
 	// ќЅя«ј“≈Ћ№Ќќ переопредел€ть конструктор с набором атрибутов
     public AuthographView(Context context, AttributeSet attrs) {
@@ -37,24 +40,37 @@ public class AuthographView extends View {
         // экземпл€р Paint дл€ свойств линий 
         paintLine = new Paint();
         paintLine.setAntiAlias(true);				// сглаживание
-        paintLine.setColor(Color.GREEN);
+        paintLine.setColor(Color.WHITE);
         paintLine.setStrokeCap(Paint.Cap.ROUND);	// закругленные кра€
         paintLine.setStrokeWidth(5);				// толщина
         paintLine.setStyle(Paint.Style.STROKE);		// только контур
     }
-    
+    /*
+     * ”становить путь к фоновому изображению
+     */
     public void setBackgroundPath(String photoPath){
     	this.photoPath = photoPath;
     }
     
+    /*
+     * ѕри переопределении размера области масштабируетс€ фоновый рисунок
+     * @see android.view.View#onSizeChanged(int, int, int, int)
+     */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     	super.onSizeChanged(w, h, oldw, oldh);
-    	background = PhotoFileHelper.getScaledBitmapFromFile(photoPath, w, h); 
-//    	background = BitmapHelper.getScaledBitmapFromFile(photoPath, w, h); 
+    	this.w = w;
+    	this.h = h;
+    	background = PhotoFileHelper.getScaledBitmapFromResource(
+    			getResources(), R.drawable.old_paper_texture, w, h);
+    	photo = PhotoFileHelper.getScaledBitmapFromFile(photoPath, w, h);     	 
+//    	phot = BitmapHelper.getScaledBitmapFromFile(photoPath, w, h); 
     }
     
-	// обработчик касаний
+    /*
+     * обработчик касаний
+     * @see android.view.View#onTouchEvent(android.view.MotionEvent)
+     */	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		int action = event.getAction();	// действие
@@ -67,21 +83,17 @@ public class AuthographView extends View {
 			currentPath = new Path();			
 			currentPath.moveTo(x, y);
 			pathlist.add(currentPath);			
-//			Log.d("", "ACTION_DOWN");
 		}
 		// перемещение пальца
 		if (action == MotionEvent.ACTION_MOVE){
 			float distanceSquared = (x - prevX)*(x - prevX) +  (y - prevY)*(y - prevY);
 			// интерпол€ци€ - операци€ ресурсоемка€			
 			// поэтому производим, когда квадрат рассто€ни€ выше порога
-
 			if (distanceSquared > DISTANCE_THRESHOLD)
 				currentPath.quadTo(prevX, prevY, (x + prevX)/2, (y + prevY)/2);
-//			Log.d("", "ACTION_MOVE");			
 		}
 		// подн€ли палец
 		if (action == MotionEvent.ACTION_UP){							
-			Log.d("", "ACTION_UP");
 			currentPath = null;			
 		}
 		// обновл€ем координаты предыдущей точки
@@ -91,18 +103,28 @@ public class AuthographView extends View {
 		return true;
 	}
 	
-	// отрисовка
+	/*
+	 *  отрисовка
+	 * @see android.view.View#onDraw(android.graphics.Canvas)
+	 */
 	@Override
 	protected void onDraw(Canvas canvas) {
-		canvas.drawColor(Color.GRAY);
 		// фон
 		if (background != null){
 			canvas.drawBitmap(background, 0, 0, null);
+		}
+		else{
+			canvas.drawColor(Color.GRAY);
+		}
+		// фото - центрируетс€ по холсту
+		if (photo != null){
+			int x = (w - photo.getWidth())/2;
+			int y = (h - photo.getHeight())/2;
+			canvas.drawBitmap(photo, x, y, null);
 		}
 		// отрисовка всех ломаных
 		for(Path p : pathlist){
 			canvas.drawPath(p, paintLine);
 		}			
 	}	
-
 }

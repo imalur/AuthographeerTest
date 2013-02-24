@@ -8,6 +8,7 @@ import java.util.Date;
 import ua.com.imalur.authographeer.R;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -108,30 +109,44 @@ public class PhotoFileHelper {
 			BitmapFactory.decodeFile(photoPath, bmOptions);
 			int photoW = Math.min(bmOptions.outWidth, bmOptions.outHeight);
 			int photoH = Math.max(bmOptions.outWidth, bmOptions.outHeight);
+
 			// Determine how much to scale down the image
-			int scaleFactor = Math.min(photoW/screenWidth, photoH/screenHeight);		
+			float scaleFactor = Math.min((float)screenWidth/photoW, (float)screenHeight/photoH);		
 			// create a matrix for the manipulation
 	        Matrix matrix = new Matrix();
 	        // resize the bit map
-	//        matrix.postScale(scaleFactor, scaleFactor);
+	        matrix.postScale(scaleFactor, scaleFactor);
 	        // rotate the Bitmap if photo in landscape orientation
 	        if (bmOptions.outWidth > bmOptions.outHeight)
 	        	matrix.postRotate(90);
 	
 			// Decode the image file into a Bitmap sized to fill the View
 			bmOptions.inJustDecodeBounds = false;
-			bmOptions.inSampleSize = scaleFactor;
 			bmOptions.inPurgeable = true;
-			Bitmap originalBitmap =  BitmapFactory.decodeFile(photoPath, bmOptions);		
-			return originalBitmap;
+			Bitmap originalBitmap =  BitmapFactory.decodeFile(photoPath, bmOptions);
+			
 	    	// recreate the new Bitmap
-//	        rotatedBmp =  Bitmap.createBitmap(	originalBitmap, 0, 0,
-//								        		photoW, photoH, 
-//								        		matrix, true);    		
+	        rotatedBmp =  Bitmap.createBitmap(	originalBitmap, 0, 0,
+	        									bmOptions.outWidth, bmOptions.outHeight,
+								        		matrix, true);
     	}
     	catch(Exception e){
     		Log.e("",e.getMessage());
     	}
         return rotatedBmp;
     }
+	
+	/*
+	 * Получить и масштабировать изображение из ресурсов 
+	 */
+	public static Bitmap getScaledBitmapFromResource(Resources res, int resourceId, int screenWidth, int screenHeight) {		
+		try{
+			Bitmap originalBitmap =  BitmapFactory.decodeResource(res, resourceId);
+			return Bitmap.createScaledBitmap(originalBitmap, screenWidth, screenHeight, true);
+		}
+		catch(Exception e){
+			Log.e("",e.getMessage());
+		}
+		return null;
+	}
 }
