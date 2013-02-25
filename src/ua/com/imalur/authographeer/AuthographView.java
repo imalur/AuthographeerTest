@@ -1,7 +1,6 @@
 package ua.com.imalur.authographeer;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 import ua.com.imalur.authographeer.utils.PhotoFileHelper;
 import android.content.Context;
@@ -11,7 +10,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -22,13 +20,12 @@ public class AuthographView extends View {
 	private float prevX;
 	private float prevY;
 	
-	private List<Path> pathlist = new ArrayList<Path>();	// коллекци€ путей
-	private Paint paintLine;	// стили и цвета
-	private Paint paintWhite;	// бела€ кисть
+	private Stack<PaintPathPair> paintPathList = new Stack<PaintPathPair>();	// коллекци€ путей
+	private Paint currentPaint;	// стили и цвета
 	private Path currentPath;	// текущий путь - дл€ событи€ перемещени€
 	
-	private boolean savedChanges = false;
-	private String photoPath;	// путь к фоновому изображению
+	private boolean saved = true;	// флаг изменений
+	private String photoPath;		// путь к фоновому изображению
 	private Bitmap photo;
 	private Bitmap background;
 	private int w;
@@ -37,13 +34,7 @@ public class AuthographView extends View {
 	// ќЅя«ј“≈Ћ№Ќќ переопредел€ть конструктор с набором атрибутов
     public AuthographView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        // экземпл€р Paint дл€ свойств линий 
-        paintLine = new Paint();
-        paintLine.setAntiAlias(true);				// сглаживание
-        paintLine.setColor(Color.WHITE);
-        paintLine.setStrokeCap(Paint.Cap.ROUND);	// закругленные кра€
-        paintLine.setStrokeWidth(5);				// толщина
-        paintLine.setStyle(Paint.Style.STROKE);		// только контур
+        currentPaint = getDefaultPaint();
     }
     /*
      * ”становить путь к фоновому изображению
@@ -64,7 +55,7 @@ public class AuthographView extends View {
     	background = PhotoFileHelper.getScaledBitmapFromResource(
     			getResources(), R.drawable.old_paper_texture, w, h);
     	photo = PhotoFileHelper.getScaledBitmapFromFile(photoPath, w, h);     	 
-//    	phot = BitmapHelper.getScaledBitmapFromFile(photoPath, w, h); 
+//    	photo = BitmapHelper.getScaledBitmapFromFile(photoPath, w, h); 
     }
     
     /*
@@ -82,7 +73,8 @@ public class AuthographView extends View {
 			// создаем новый path, устанавливаем в точку касани€ и добавл€ем в коллекцию
 			currentPath = new Path();			
 			currentPath.moveTo(x, y);
-			pathlist.add(currentPath);			
+			
+			paintPathList.add(new PaintPathPair(currentPath, clonePaint(currentPaint)));			
 		}
 		// перемещение пальца
 		if (action == MotionEvent.ACTION_MOVE){
@@ -94,7 +86,8 @@ public class AuthographView extends View {
 		}
 		// подн€ли палец
 		if (action == MotionEvent.ACTION_UP){							
-			currentPath = null;			
+			currentPath = null;	
+			saved = false;
 		}
 		// обновл€ем координаты предыдущей точки
 		prevX = x;
@@ -123,8 +116,65 @@ public class AuthographView extends View {
 			canvas.drawBitmap(photo, x, y, null);
 		}
 		// отрисовка всех ломаных
-		for(Path p : pathlist){
-			canvas.drawPath(p, paintLine);
+		for(PaintPathPair p : paintPathList){
+			p.draw(canvas);
 		}			
 	}	
+	
+	/*
+	 * Paint по умолчанию
+	 */
+	private Paint getDefaultPaint(){		
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);				// сглаживание
+        paint.setColor(Color.WHITE);
+        paint.setStrokeCap(Paint.Cap.ROUND);	// закругленные кра€
+        paint.setStrokeWidth(5);				// толщина
+        paint.setStyle(Paint.Style.STROKE);		// только контур
+        return paint;
+	}
+	/*
+	 * —одать копию объект Paint
+	 */
+	private Paint clonePaint(Paint paint){		
+		Paint newpaint = new Paint();
+        newpaint.setAntiAlias(true);				
+        newpaint.setStrokeCap(Paint.Cap.ROUND);	
+        newpaint.setStyle(Paint.Style.STROKE);
+        newpaint.setColor(paint.getColor());
+        newpaint.setStrokeWidth(paint.getStrokeWidth());
+        return newpaint;
+	}
+	
+	public Paint getCurrentPaint(){
+		return this.currentPaint;
+	}
+
+	/*
+	 * очистить стек ломаных
+	 */
+	public void clear(){
+		paintPathList.clear();
+		invalidate();
+	}
+	
+	/*
+	 * удалить последнюю ломаную
+	 */
+	public void undo(){
+		if (paintPathList.size() > 0){
+			paintPathList.pop();
+			invalidate();
+		}
+	}
+	
+
+	public boolean isSaved(){
+		return saved;
+	}
+	
+	public void setSaved(boolean saved){
+		this.saved = saved;
+	}
+	
 }

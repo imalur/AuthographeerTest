@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <ImageView 
+        android:id="@+id/iwPaintLine"
+        android:layout_width="match_parent"
+    	android:layout_height="50dp"
+        android:layout_margin="10dp"
+        />
+    <TableLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:stretchColumns="1"
+        >
+        
+        <!-- SIZE -->
+        <TableRow 
+            style="@style/TableRowStyle">
+            <TextView 
+                style="@style/CaptionSeekBarStyle"
+                android:text="@string/sb_size"
+                />
+            <SeekBar
+                android:id="@+id/sbSize"                                
+                style="@style/SeekBarStyle"
+                android:max="30"
+                />            
+        </TableRow>
+        <!-- ALPHA -->
+        <TableRow 
+            style="@style/TableRowStyle">
+            <TextView 
+                style="@style/CaptionSeekBarStyle"
+                android:text="@string/sb_alpha"
+                />
+            <SeekBar
+                android:id="@+id/sbAlpha"
+                style="@style/SeekBarStyle"
+                />            
+        </TableRow>
+        
+        <!-- RED -->
+        <TableRow 
+            style="@style/TableRowStyle">
+            <TextView 
+                style="@style/CaptionSeekBarStyle"
+                android:text="@string/sb_red"
+                />
+            <SeekBar
+                android:id="@+id/sbRed"
+                style="@style/SeekBarStyle"
+                />            
+        </TableRow>
+        
+        <!-- GREEN -->
+        <TableRow 
+            style="@style/TableRowStyle">
+            <TextView 
+                style="@style/CaptionSeekBarStyle"
+                android:text="@string/sb_green"
+                />
+            <SeekBar
+                android:id="@+id/sbGreen"                
+                style="@style/SeekBarStyle"
+                />            
+        </TableRow>
+        
+        <!-- BLUE -->
+        <TableRow 
+            style="@style/TableRowStyle">
+            <TextView 
+                style="@style/CaptionSeekBarStyle"
+                android:text="@string/sb_blue"
+                />
+            <SeekBar
+                android:id="@+id/sbBlue"
+                style="@style/SeekBarStyle"
+                />            
+        </TableRow>
+    </TableLayout>
+	
+    <LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal" >
+        <Button
+            android:id="@+id/btnOk"
+            style="@style/ButtonStyle"
+            android:text="@android:string/ok"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            />
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/ButtonStyle"
+            android:text="@android:string/cancel"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            />
+            
+    </LinearLayout>
+    
+</LinearLayout>

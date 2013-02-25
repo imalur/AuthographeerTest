@@ -5,7 +5,28 @@
     	<item name = "android:layout_width">match_parent</item>
         <item name = "android:layout_height">wrap_content</item>
         <item name = "android:layout_marginTop">10dp</item>            
-        <item name = "android:onClick">onButtonClick</item>
+    </style>
+    
+    <style name="TableRowStyle" >
+    	<item name = "android:orientation">horizontal</item>
+    	<item name = "android:layout_marginBottom">10dp</item>
+        <item name = "android:layout_width">match_parent</item>
+        <item name = "android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CaptionSeekBarStyle" >
+    	<item name = "android:gravity">right</item>
+    	<item name = "android:layout_gravity">center_vertical</item>
+        <item name = "android:layout_width">wrap_content</item>
+        <item name = "android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="SeekBarStyle" >
+    	<item name = "android:max">255</item>
+    	<item name = "android:paddingLeft">20dp</item>
+    	<item name = "android:paddingRight">10dp</item>
+        <item name = "android:layout_width">wrap_content</item>
+        <item name = "android:layout_height">wrap_content</item>
     </style>
  
 </resources>

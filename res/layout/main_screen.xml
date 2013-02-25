@@ -19,16 +19,19 @@
         <Button
             android:id="@+id/btnCamera"
             style="@style/ButtonStyle"
+            android:onClick="onButtonClick"
             android:text="@string/btn_camera"
             />
         <Button
             android:id="@+id/btnGallery"
             style="@style/ButtonStyle"
+            android:onClick="onButtonClick"
             android:text="@string/btn_gallery"            
             />
         <Button
             android:id="@+id/btnBlank"
             style="@style/ButtonStyle"
+            android:onClick="onButtonClick"
             android:text="@string/btn_blank"            
             />
 
