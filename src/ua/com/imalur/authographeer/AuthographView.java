@@ -16,6 +16,9 @@ import android.view.View;
 //Создать класс, унаследованный от View 
 public class AuthographView extends View {
 	
+	public static int DEF_COLOR = Color.WHITE;
+	public static float DEF_WIDTH = 5f;
+	
 	private final int DISTANCE_THRESHOLD = 5; // 10
 	private float prevX;
 	private float prevY;
@@ -127,9 +130,9 @@ public class AuthographView extends View {
 	private Paint getDefaultPaint(){		
         Paint paint = new Paint();
         paint.setAntiAlias(true);				// сглаживание
-        paint.setColor(Color.WHITE);
+        paint.setColor(DEF_COLOR);				// цвет
         paint.setStrokeCap(Paint.Cap.ROUND);	// закругленные края
-        paint.setStrokeWidth(5);				// толщина
+        paint.setStrokeWidth(DEF_WIDTH);		// толщина
         paint.setStyle(Paint.Style.STROKE);		// только контур
         return paint;
 	}
@@ -144,6 +147,11 @@ public class AuthographView extends View {
         newpaint.setColor(paint.getColor());
         newpaint.setStrokeWidth(paint.getStrokeWidth());
         return newpaint;
+	}
+	
+	public void setCurrentPaintParams(int color, float width){
+		this.currentPaint.setColor(color);
+		this.currentPaint.setStrokeWidth(width);
 	}
 	
 	public Paint getCurrentPaint(){

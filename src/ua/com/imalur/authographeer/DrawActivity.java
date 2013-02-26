@@ -4,6 +4,9 @@ import ua.com.imalur.authographeer.utils.PhotoFileHelper;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +17,10 @@ public class DrawActivity extends Activity {
 	private AuthographView view;	
 	private String photoPath;
 	
+	private static final String PAINT_WIDTH = "width";
+	private static final String PAINT_COLOR = "color";
+	SharedPreferences paintPreferences;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +29,32 @@ public class DrawActivity extends Activity {
         view = (AuthographView) findViewById(R.id.drawing_area);
         photoPath = getIntent().getStringExtra(MainScreen.EXTRA_PHOTOPATH);
         view.setBackgroundPath(photoPath);
+    }
+    /*
+     * Занрузка последней кисти
+     * @see android.app.Activity#onStart()
+     */
+    @Override
+    protected void onStart() {
+    	super.onStart();
+    	paintPreferences = getPreferences(MODE_PRIVATE);
+    	int color = paintPreferences.getInt(PAINT_COLOR, AuthographView.DEF_COLOR);
+    	float width = paintPreferences.getFloat(PAINT_WIDTH, AuthographView.DEF_WIDTH);
+    	view.setCurrentPaintParams(color, width);
+    }
+    /*
+     * Сохранение текущей кисти
+     * @see android.app.Activity#onStop()
+     */
+    @Override
+    protected void onStop() {
+    	super.onStop();
+    	Paint paint = view.getCurrentPaint();
+    	paintPreferences = getPreferences(MODE_PRIVATE);
+    	Editor editor = paintPreferences.edit();
+    	editor.putInt(PAINT_COLOR, paint.getColor());
+    	editor.putFloat(PAINT_WIDTH, paint.getStrokeWidth());
+    	editor.commit();
     }
 
     @Override

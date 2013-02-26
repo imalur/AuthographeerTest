@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name = "dark_orange">#795709</color>			<!-- #d09e1b -->
+    <color name = "light_orange">#f5e1aa</color>		<!-- #f5e1aa -->
+</resources>

@@ -22,7 +22,7 @@
 	<string name="sb_red">Red</string>
 	<string name="sb_green">Green</string>
 	<string name="sb_blue">Blue</string>
-	<string name="save_dialog_title">Save on Exit</string>
+	<string name="save_dialog_title">Save and Exit</string>
 	<string name="save_dialog_message">Do you want to save image?</string>
 
 </resources>

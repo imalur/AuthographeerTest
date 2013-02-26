@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="logo_size">300dp</dimen>
+    <dimen name="main_screen_margin">60dp</dimen>
+    <dimen name="button_radius">15dp</dimen>
+    <dimen name="button_marginTop">40dp</dimen>
+    <dimen name="button_textSize">35sp</dimen>
+</resources>
