@@ -39,14 +39,14 @@ public class AuthographView extends View {
         super(context, attrs);
         currentPaint = getDefaultPaint();
     }
-    /*
+    /**
      * Установить путь к фоновому изображению
      */
     public void setBackgroundPath(String photoPath){
     	this.photoPath = photoPath;
     }
     
-    /*
+    /**
      * При переопределении размера области масштабируется фоновый рисунок
      * @see android.view.View#onSizeChanged(int, int, int, int)
      */
@@ -61,7 +61,7 @@ public class AuthographView extends View {
 //    	photo = BitmapHelper.getScaledBitmapFromFile(photoPath, w, h); 
     }
     
-    /*
+    /**
      * обработчик касаний
      * @see android.view.View#onTouchEvent(android.view.MotionEvent)
      */	
@@ -99,7 +99,7 @@ public class AuthographView extends View {
 		return true;
 	}
 	
-	/*
+	/**
 	 *  отрисовка
 	 * @see android.view.View#onDraw(android.graphics.Canvas)
 	 */
@@ -124,7 +124,7 @@ public class AuthographView extends View {
 		}			
 	}	
 	
-	/*
+	/**
 	 * Paint по умолчанию
 	 */
 	private Paint getDefaultPaint(){		
@@ -136,7 +136,7 @@ public class AuthographView extends View {
         paint.setStyle(Paint.Style.STROKE);		// только контур
         return paint;
 	}
-	/*
+	/**
 	 * Содать копию объект Paint
 	 */
 	private Paint clonePaint(Paint paint){		
@@ -158,7 +158,7 @@ public class AuthographView extends View {
 		return this.currentPaint;
 	}
 
-	/*
+	/**
 	 * очистить стек ломаных
 	 */
 	public void clear(){
@@ -166,7 +166,7 @@ public class AuthographView extends View {
 		invalidate();
 	}
 	
-	/*
+	/**
 	 * удалить последнюю ломаную
 	 */
 	public void undo(){

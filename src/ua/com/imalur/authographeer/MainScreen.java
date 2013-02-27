@@ -28,7 +28,7 @@ public class MainScreen extends Activity {
         	findViewById(R.id.btnCamera).setEnabled(false);
     }
     
-    /*
+    /**
      * Обработка кнопок главного экрана
      */
     public void onButtonClick(View v){
@@ -45,7 +45,7 @@ public class MainScreen extends Activity {
     	}
     }
 
-	/*
+	/**
      *   Доступна ли камера на устройстве 
      */
     private boolean isCameraAvaliable(){
@@ -54,7 +54,7 @@ public class MainScreen extends Activity {
         				PackageManager.FEATURE_CAMERA);
     }
     
-    /*
+    /**
      * Запуск активности для рисования
      */
     private void launchDrawing(String photoPath) {
@@ -63,7 +63,7 @@ public class MainScreen extends Activity {
 		startActivity(intent);		
 	}
     
-    /*
+    /**
      * Запуск приложения для работы с камерой 
      * с возможностью сохранения снимка
      */
@@ -74,7 +74,7 @@ public class MainScreen extends Activity {
 		startActivityForResult(intent, IMAGE_FROM_CAMERA_ACTION);		
 	}
     
-    /*
+    /**
      *  Выбор фото из галереи
      */
     private void launchGallery() {
@@ -86,7 +86,7 @@ public class MainScreen extends Activity {
         		IMAGE_FROM_GALLERY_ACTION);                          		
 	}
     
-	/*
+	/**
 	 *  Обработка откликов от камеры и галереи
 	 */
     @Override

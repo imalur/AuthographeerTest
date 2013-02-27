@@ -30,7 +30,7 @@ public class DrawActivity extends Activity {
         photoPath = getIntent().getStringExtra(MainScreen.EXTRA_PHOTOPATH);
         view.setBackgroundPath(photoPath);
     }
-    /*
+    /**
      * Занрузка последней кисти
      * @see android.app.Activity#onStart()
      */
@@ -42,7 +42,7 @@ public class DrawActivity extends Activity {
     	float width = paintPreferences.getFloat(PAINT_WIDTH, AuthographView.DEF_WIDTH);
     	view.setCurrentPaintParams(color, width);
     }
-    /*
+    /**
      * Сохранение текущей кисти
      * @see android.app.Activity#onStop()
      */

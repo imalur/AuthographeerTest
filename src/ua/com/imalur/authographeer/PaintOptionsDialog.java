@@ -70,7 +70,7 @@ public class PaintOptionsDialog extends Dialog {
 		sbBlue.setProgress( Color.blue(color));
 	}
 	
-	/*
+	/**
 	 * Обработчик движения ползунков
 	 */
 	OnSeekBarChangeListener colorListener = new OnSeekBarChangeListener() {
@@ -103,7 +103,7 @@ public class PaintOptionsDialog extends Dialog {
 		}
 	};
 	
-	/*
+	/**
 	 * Обработчик нажатия кнопок
 	 */
 	android.view.View.OnClickListener buttonListener = 
