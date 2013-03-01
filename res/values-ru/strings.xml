@@ -1,0 +1,27 @@
+<resources>
+
+    <string name="app_name">Autograph, please!</string>
+    
+    <string name="btn_camera">с камеры</string>
+    <string name="btn_gallery">с галереи</string>
+    <string name="btn_blank">с чистого листа</string>
+    
+        
+    <string name="menu_pencil">Кисть</string>
+    <string name="menu_undo">Отменить</string>
+    <string name="menu_clear">Очистить</string>
+    <string name="menu_save">Сохранить</string>
+
+    <string name="toast_image_saved">Изображение сохранено</string>
+    <string name="toast_error_saving_image">При сохранении возникла ошибка</string>
+    
+
+	<string name="sb_alpha">Прозрачность</string>
+	<string name="sb_size">Размер</string>
+	<string name="sb_red">Красный</string>
+	<string name="sb_green">Зеленый</string>
+	<string name="sb_blue">Синий</string>
+	<string name="save_dialog_title">Сохранить и выйти</string>
+	<string name="save_dialog_message">Хотите сохранить измененное изображение в новом файле?</string>
+
+</resources>

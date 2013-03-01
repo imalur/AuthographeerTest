@@ -2,8 +2,8 @@
 
     <string name="app_name">Autograph, please!</string>
     
-    <string name="btn_camera">Recieve Photo from Camera</string>
-    <string name="btn_gallery">Recieve Photo from Gallery</string>
+    <string name="btn_camera">Photo from Camera</string>
+    <string name="btn_gallery">Photo from Gallery</string>
     <string name="btn_blank">Blank Canvas</string>
     
         
@@ -12,17 +12,16 @@
     <string name="menu_clear">Clear</string>
     <string name="menu_save">Save</string>
 
-    <string name="toast_image_saved">Image saved</string>
-    <string name="toast_error_saving_image">Error saving image</string>
+    <string name="toast_image_saved">Image was saved successfully in a new file</string>
+    <string name="toast_error_saving_image">An error occurred while saving image</string>
     
-    <string name="ofd_title">Open file</string>
-	<string name="ofd_go_up_text">Back</string>
+
 	<string name="sb_alpha">Alpha</string>
 	<string name="sb_size">Size</string>
 	<string name="sb_red">Red</string>
 	<string name="sb_green">Green</string>
 	<string name="sb_blue">Blue</string>
 	<string name="save_dialog_title">Save and Exit</string>
-	<string name="save_dialog_message">Do you want to save image?</string>
+	<string name="save_dialog_message">Do you want to save modified image in a new file?</string>
 
 </resources>
