@@ -15,7 +15,7 @@
     <string name="toast_image_saved">Изображение сохранено</string>
     <string name="toast_error_saving_image">При сохранении возникла ошибка</string>
     
-
+	<string name="pencil_dialog_title">Размер и цвет кисти</string>
 	<string name="sb_alpha">Прозрачность</string>
 	<string name="sb_size">Размер</string>
 	<string name="sb_red">Красный</string>

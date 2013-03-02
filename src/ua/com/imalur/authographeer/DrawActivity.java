@@ -6,8 +6,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,14 +24,16 @@ public class DrawActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD)
+        	setTitle(R.string.app_name);
         setContentView(R.layout.draw);
-        
+                       
         view = (AuthographView) findViewById(R.id.drawing_area);
         photoPath = getIntent().getStringExtra(MainScreen.EXTRA_PHOTOPATH);
         view.setBackgroundPath(photoPath);
     }
     /**
-     * Занрузка последней кисти
+     * Загрузка последней кисти
      * @see android.app.Activity#onStart()
      */
     @Override

@@ -30,6 +30,7 @@ public class PaintOptionsDialog extends Dialog {
 	
 	public PaintOptionsDialog(Context context, Paint paint) {
 		super(context);
+		setTitle(R.string.pencil_dialog_title);
 		setContentView(R.layout.paint_dialog);
 		setCancelable(true);
 		// копируем данные главной кисти в образец

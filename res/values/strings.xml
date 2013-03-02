@@ -15,12 +15,13 @@
     <string name="toast_image_saved">Image was saved successfully in a new file</string>
     <string name="toast_error_saving_image">An error occurred while saving image</string>
     
-
+	<string name="pencil_dialog_title">Pencil Size and Color</string>
 	<string name="sb_alpha">Alpha</string>
 	<string name="sb_size">Size</string>
 	<string name="sb_red">Red</string>
 	<string name="sb_green">Green</string>
 	<string name="sb_blue">Blue</string>
+	
 	<string name="save_dialog_title">Save and Exit</string>
 	<string name="save_dialog_message">Do you want to save modified image in a new file?</string>
 

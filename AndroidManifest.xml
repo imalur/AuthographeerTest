@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ua.com.imalur.authographeer"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="0.9" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -16,19 +16,18 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:icon="@drawable/icon"
-        android:label="@string/app_name" 
+        android:icon="@drawable/icon"            
+        android:label="@string/app_name"     
         android:theme="@android:style/Theme.Holo"
         ><!-- Theme.Holo - для отображения меню в  ActionBar при API >= 11 -->
          <!-- android:theme="@style/AppTheme" -->
         <activity
             android:name =".DrawActivity"
-            android:label ="@string/app_name"            
+            android:label=""  
             android:screenOrientation="portrait" >            
         </activity>
-        <activity
+        <activity            
             android:name=".MainScreen"
-            android:label="@string/app_name" 
             android:theme = "@android:style/Theme.Holo.NoActionBar.Fullscreen"
             android:screenOrientation="portrait" >
             <intent-filter>
