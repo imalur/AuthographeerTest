@@ -49,9 +49,14 @@ public class MainScreen extends Activity {
      *   Доступна ли камера на устройстве 
      */
     private boolean isCameraAvaliable(){
-    	return getPackageManager()
-        		.hasSystemFeature(
-        				PackageManager.FEATURE_CAMERA);
+    	boolean hasCamera =	 getPackageManager()
+        						.hasSystemFeature(
+        								PackageManager.FEATURE_CAMERA) ;
+    	// front camera - for devices support such as Nexus 7 
+    	boolean hasFrontCamera =  getPackageManager()
+    								.hasSystemFeature(
+    									PackageManager.FEATURE_CAMERA_FRONT) ;
+    	return  hasCamera || hasFrontCamera;
     }
     
     /**
